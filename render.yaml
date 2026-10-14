@@ -1,0 +1,19 @@
+services:
+  - type: web
+    name: threatguard-ai
+    env: python
+    region: oregon
+    plan: free
+    buildCommand: pip install -r backend/requirements.txt
+    startCommand: uvicorn backend.main:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.9
+      - key: SECRET_KEY
+        generateValue: true
+      - key: TELEGRAM_BOT_TOKEN
+        value: ""
+      - key: TELEGRAM_BOT_USERNAME
+        value: "ThreatGuardAI_Bot"
+      - key: TELEGRAM_WEBHOOK_URL
+        value: ""

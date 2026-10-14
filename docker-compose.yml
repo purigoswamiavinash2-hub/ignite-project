@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+  threatguard:
+    build: .
+    container_name: threatguard_ai
+    restart: unless-stopped
+    ports:
+      - "8000:8000"
+    environment:
+      - PORT=8000
+      - PROJECT_NAME=ThreatGuard AI
+      - SECRET_KEY=threatguard-production-secret-key-2026
+      - DATABASE_URL=sqlite:///./threatguard.db
+      - TELEGRAM_BOT_TOKEN=
+      - TELEGRAM_BOT_USERNAME=ThreatGuardAI_Bot
+    volumes:
+      - threatguard_data:/app/data
+
+volumes:
+  threatguard_data:
